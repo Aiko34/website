@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.grid {
+  display: grid;
+  justify-content: center;
+  margin: auto auto;
+  grid-template-rows: auto;
+  gap: 20px;
+  background-color: #11111100;
+  padding:10px;
+  border-radius: 0px;
+  max-width:90%;
+  max-height:100%;
+}
+.image {
+  max-width:100%;
+  max-height:100%;
+  padding:0px;
+}
+
+</style>
+</head>
+<body>
+  <div id="content" class="grid"></div>
+  <script>
+    //get chapter number
+    var chapter = window.location.search.substr(1).split("=")[1];
+    //link files
+    let thumb   = '.\\data\\'+chapter+'\\tmp.png';
+    let about   = '.\\data\\'+chapter+'\\about.info';
+    //read data from file
+    //populate page
+    var string='<div><img src="'+thumb+'" class = "image"></div>';
+    document.getElementById('content').innerHTML =string;
+  </script>
+</body>
+</html>
