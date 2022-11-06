@@ -1,91 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  background-color:#11111;
-  margin: 0;
-}
-.grid {
-  display: grid;
-  justify-content: center;
-  margin: 0 auto;
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto auto auto ;
-  gap: 10px;
-  background-color: #111111CC;
-  padding:50px;
-  border-radius: 0px;
+* {box-sizing: border-box;}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/*remove white space below image*/
+img { display: block; }
+  .header {
+      text-align: center;
+      width: 100%;
   }
-.grid > div {
-  background-color: rgba(255, 255, 255, 1);
-  font-size: 20px;
- 
+/* Float four columns side by side */
+.column {
+  float: left;
+  max-width:300px;
+  min-width:200px;
+  margin:10px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #000000FF;
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: FFFFFFFF;
-}
-
-.flex-container > div {
-  background-color: #f1f1f1FF;
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
-}
-.header {
-  text-align: center;
-}
-.chapter_item {
-  transition: transform .2s; /* Animation */
-  width: 300px;
-  height: 169px;  
+/* Remove extra left and right margins, due to padding */
+.row {
+  width:100%;
+	margin: 0 0;
+  padding:0 0;
+	position: absolute;
+  left: 50%;
+  align:center;
+  transform: translate(-50%, 0%);
+  overflow: hidden;
+  transition: transform .2s;
   border-radius: 10px;
   border: 2px solid #00000022;
-  overflow: hidden;
-}
-.chapter_item:hover {
-  transform: scale(1.01);
-}
-.chapter_thumb {
-  transition: transform .2s; /* Animation */
-  width: 300px;
-  height: 169px;  
-}
-.chapter_thumb:hover {
-  transform: scale(1.1);
-}
-.chapter_number {
-    width: 100%;
-    position: absolute;
-    background-color: #111;
-    bottom: 0;
-    height: 20px;
-    line-height: 20px;
-    opacity: 0.75;
-    text-align: center;
-    font-size: 15px;
-    color: #fff;
-}
-</style>
 
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    display: block;
+  }
+}
+  .chapter_thumb {
+    transition: transform .2s; /* Animation */
+    width:100%;
+  }
+
+  .chapter_thumb:hover {
+    transform: scale(1.1);
+  }
+</style>
 </head>
 <body>
   <div class ="header">
-        <img srcset=".\data\globalAssets\logo.pn 120w,
+        <img srcset=".\data\globalAssets\logo.png 120w,
              .\data\globalAssets\logo.png 193w,
              .\data\globalAssets\logo.png 278w"
      sizes="(max-width: 710px) 120px,
             (max-width: 991px) 193px,
             278px" style="vertical-align:middle;margin:50px 0px">
   </div>
-  <div>
-    <ul id = "chapterList" class="grid"></ul>
-  </div>
-  <div class = "navigation"></div>
+  <div id="container" class="row">
+</div>
 
 <script>
   var string ="";
@@ -93,10 +74,10 @@ body {
     let link = '.\\reader.html?chapter='+i;
     let thumb    = '.\\data\\1\\tmp.png';
     let chapterName ='ABC';
-      string+='<li class = "chapter_item"><a href="'+link+'" target="_self"><img src="'+thumb+'" class = "chapter_thumb"><div>'+chapterName+'</div></a></li>';
+      string+='<div class = "column"><a href="'+link+'" target="_self"><img src="'+thumb+'" class = "chapter_thumb"></a></div>';
   }
-  document.getElementById('chapterList').innerHTML =string;
+  document.getElementById('container').innerHTML =string;
 </script>
-
 </body>
 </html>
+
